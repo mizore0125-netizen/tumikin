@@ -1,0 +1,40 @@
+html, body {
+    margin: 0;
+}
+
+.site-header {
+    background-image: 
+    url("image/background.png");
+    /* ヘッダー部分全体で一枚の画像を使用*/
+    background-size: cover;
+    /* 画像の上下左右中央部分を使用*/
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 150px;
+    padding: 10px;
+}
+
+.brand {
+    font-size: 50px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* 選択されたボタンのデザイン */
+.check-table.selected {
+    background-color: #ffd700; /* ゴールドジムっぽい色？ */
+    color: black;
+    font-weight: bold;
+}
+
+#place-holder {
+    text-align:right
+}
+
+#today-date {
+    text-align: left;
+}
+
+#add-set {
+    position: fixed;
+}

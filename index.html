@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="シンプルに筋トレ記録を管理できるwebアプリ『積筋』">
+        <title>積筋 | 筋トレ記録Webアプリ</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="site-header">
+            <h1 class="brand"><ruby>積筋<rt>Tumikin</rt></ruby></h1>
+        </header>
+        <main>
+            <p id="today-date"></p>
+            <p id="place-holder"><input type="text" name="place" required placeholder="場所"></p>
+            <nav>
+                <button class="check-table">Chest</button>
+                <button class="check-table">Back</button>
+                <button class="check-table">Leg</button>
+                <button class="check-table">Arm</button>
+                <button class="check-table">Shoulder</button>
+                <button class="check-table">etc.</button>
+                <button id="show-table">決定</button>
+                <button id="reset">Reset</button>
+            </nav>
+        </main>
+        <div id="table-area"></div>
+        <script src="script.js"></script>
+    </body>
+</html>
