@@ -34,6 +34,16 @@ partButtons.forEach(function(table) {
     table.addEventListener("click", function() {
         // クリックされたボタン自身（this）に 'selected' クラスを付け外しする
         this.classList.toggle("selected");
+        const etcInput = document.getElementById("etc-input");
+        if (this.textContent == "etc.") {
+            if (this.classList.contains("selected")) {
+                etcInput.hidden = false;
+                etcInput.focus();
+            }else {
+                etcInput.hidden = true;
+                etcInput.value = "";
+            }
+        }
     })
 })
 
@@ -59,9 +69,20 @@ function addSetRow(weight = "", reps = "") {
 button.addEventListener("click",function(){
     const selectedElements = document.querySelectorAll(".check-table.selected")
     let selectedParts = [];
+    const etcInput = document.getElementById("etc-input");
+
     selectedElements.forEach(function(element) {
-        selectedParts.push(element.textContent);
+        if (element.textContent !== "etc.") {
+            selectedParts.push(element.textContent);
+        } else {
+            if(etcInput.value.trim() !== "") {
+                selectedParts.push(etcInput.value.trim());
+            } else {
+                selectedParts.push("その他");
+            }
+        }
     });
+    
     let partsText = selectedParts.join(" / ");
     const placeInput = document.querySelector('input[name="place"]');
     let placeText = placeInput.value;
@@ -73,7 +94,7 @@ button.addEventListener("click",function(){
     //種目名も追加するリストである程度用意した上で文字入力も可
     tableArea.innerHTML = `
     <h3>Place : ${placeText} </h3>
-    <h3>Today's Lift : ${partsText} </h3>
+    <h3>Today's Lift : ${partsText}</h3>
     <table id="workout-table" border="1">
             <th>set</th>
             <th>重量</th>
@@ -97,6 +118,7 @@ reset.addEventListener("click", () => {
     location.reload();
 });
 
+// コピーの挙動がおかしいコピーの処理を変えるか、ひとつ前のセットで使ったら押せないように変更したい
 tableArea.addEventListener("click", function(event) {
     if (event.target.classList.contains("copy-btn")) {
         const row = event.target.closest("tr");
