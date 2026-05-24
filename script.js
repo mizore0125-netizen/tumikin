@@ -1,13 +1,13 @@
 const date = new Date();
 
 function getDayString(day){
-    if (day === 0) return '日曜日';
-    if (day === 1) return '月曜日';
-    if (day === 2) return '火曜日';
-    if (day === 3) return '水曜日';
-    if (day === 4) return '木曜日';
-    if (day === 5) return '金曜日';
-    if (day === 6) return '土曜日';
+    if (day === 0) return '日';
+    if (day === 1) return '月';
+    if (day === 2) return '火';
+    if (day === 3) return '水';
+    if (day === 4) return '木';
+    if (day === 5) return '金';
+    if (day === 6) return '土';
     return '';
 }
 
@@ -15,7 +15,7 @@ const year = date.getFullYear();
 const month = date.getMonth() + 1;
 const day = date.getDate();
 const dayStr = getDayString(date.getDay());
-const formattedDate = `${year}年 ${month}月 ${day}日 ${dayStr}`;
+const formattedDate = `${year}. ${month}/${day} (${dayStr})`;
 
 // HTML要素取得
 const todayDate = document.getElementById("today-date");
@@ -63,6 +63,11 @@ button.addEventListener("click",function(){
         selectedParts.push(element.textContent);
     });
     let partsText = selectedParts.join(" / ");
+    const placeInput = document.querySelector('input[name="place"]');
+    let placeText = placeInput.value;
+    if (placeText === "") {
+        placeText = "未指定";
+    }
 
     //Today's Lift: ${partsText}を取り消しで一回一回消えるようにする
     //種目名も追加するリストである程度用意した上で文字入力も可
@@ -73,12 +78,12 @@ button.addEventListener("click",function(){
             <th>set</th>
             <th>重量</th>
             <th>回数</th>
-            <th>操作</th>
+            <th></th>
         </tr>
         <tr>
             <td>1</td>
-            <td><input type="number" min="0" step="0.25"> kg</td>
-            <td><input type="number" min="0"> 回</td>
+            <td><input type="number" min="0" step="0.25" class="weight-input"> kg</td>
+            <td><input type="number" min="0" class="reps-input"> 回</td>
             <td><button class="copy-btn">コピー</button></td>
         </tr>
     </table> 
